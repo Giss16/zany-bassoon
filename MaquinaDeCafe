@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+public class MaquinaDeCafe {
+    // Cantidad inicial de recursos
+    private int agua = 5000;
+    private int cafe = 1000;
+    private int crema = 1500;
+
+    // verificar si hay suficientes recursos
+    public boolean hayRecursos(int aguaNecesaria, int cafeNecesario, int cremaNecesaria) {
+        if (agua >= aguaNecesaria && cafe >= cafeNecesario && crema >= cremaNecesaria) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void servirCafe() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("¿Qué tipo de café desea? (Americano/Expreso/Capuchino)");
+        String tipo = scanner.nextLine();
+
+        int aguaNecesaria = 0;
+        int cafeNecesario = 0;
+        int cremaNecesaria = 0;
+        String mensaje = "";
+
+        if (tipo.equalsIgnoreCase("Americano")) {
+            aguaNecesaria = 180;
+            cafeNecesario = 15;
+            cremaNecesaria = 0;
+            mensaje = "Aquí está su café Americano";
+        } else if (tipo.equalsIgnoreCase("Expreso")) {
+            aguaNecesaria = 120;
+            cafeNecesario = 20;
+            cremaNecesaria = 0;
+            mensaje = "Aquí está su café Expreso";
+        } else if (tipo.equalsIgnoreCase("Capuchino")) {
+            aguaNecesaria = 100;
+            cafeNecesario = 70;
+            cremaNecesaria = 14;
+            mensaje = "Aquí está su café Capuchino";
+        } else {
+            System.out.println("Lo siento, no tendemos este café :(");
+            return;
+        }
+
+        if (hayRecursos(aguaNecesaria, cafeNecesario, cremaNecesaria)) {
+            agua -= aguaNecesaria;
+            cafe -= cafeNecesario;
+            crema -= cremaNecesaria;
+            System.out.println(mensaje);
+        } else {
+            System.out.println("Lo siento, no hay suficientes recursos para servir otro vaso de café");
+        }
+
+        scanner.close();
+    }
+
+    // Método para mostrar la cantidad actual de recursos
+    public void mostrarRecursos() {
+        System.out.println("Cantidad actual de recursos para servir café:");
+        System.out.println("Agua: " + agua + " ml");
+        System.out.println("Café: " + cafe + " g");
+        System.out.println("Crema: " + crema + " ml");
+    }
+    }

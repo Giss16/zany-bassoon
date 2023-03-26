@@ -1,0 +1,20 @@
+import java.util.Scanner;
+public class MaquinaDeCafe2 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        MaquinaDeCafe maquina = new MaquinaDeCafe();
+
+        while (true) {
+            maquina.servirCafe();
+
+            System.out.println("¿Desea otro vaso de café? (s/n)");
+            String respuesta = scanner.nextLine();
+            if (!respuesta.equalsIgnoreCase("s")) {
+                break;
+            }
+        }
+
+        maquina.mostrarRecursos();
+        scanner.close();
+    }
+}
